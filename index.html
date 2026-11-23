@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FoundationCov equips frozen geometric foundation models with predictive covariances for depth, relative pose, and camera intrinsics. Anonymous research project.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#0c1110">
+  <title>FoundationCov · Predictive Covariances for Geometric Foundation Models</title>
+  <meta property="og:title" content="FoundationCov">
+  <meta property="og:description" content="Making geometric foundation models probabilistic with predictive covariances. Anonymous research project.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preload" href="assets/space-grotesk.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#overview">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="FoundationCov home">Foundation<span>Cov.</span></a>
+    <nav id="main-nav" aria-label="Main navigation">
+      <a href="#overview">Overview</a><a href="#uncertainty">Uncertainty</a><a href="#method">Method</a><a href="#results">Results</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle icon-button" type="button" aria-label="Switch to light theme"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></button>
+      <a class="header-paper" href="assets/foundationcov-paper.pdf" target="_blank" rel="noopener">Read paper</a>
+      <button class="menu-toggle icon-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero container" aria-labelledby="hero-title">
+      <p class="eyebrow">GEOMETRIC FOUNDATION MODELS · PREDICTIVE UNCERTAINTY</p>
+      <h1 id="hero-title">Foundation<span>Cov.</span></h1>
+      <p class="hero-subtitle">Making Geometric Foundation Models Probabilistic <br class="desktop-break"> with Predictive Covariances</p>
+      <p class="hero-authors">Anonymous Authors</p>
+      <div class="hero-buttons">
+        <a class="button button-primary" href="assets/foundationcov-paper.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 3h7l4 4v14H6V3h1Z"/><path d="M14 3v5h4M9 12h6m-6 4h6"/></svg>Read the paper</a>
+        <a class="button button-secondary" href="#uncertainty">Explore uncertainty</a>
+      </div>
+      <figure class="hero-visual">
+        <div class="visual-topline"><span>GEOMETRY, WITH A MEASURE OF TRUST</span><span class="visual-meta">Real reconstruction · Predicted covariance</span></div>
+        <button class="figure-button hero-image" data-zoom="assets/reconstruction.webp" data-caption="Reconstructed scene with depth and intrinsics uncertainty, RGB colors, and full relative pose covariances for selected frame pairs." aria-label="Enlarge reconstruction and uncertainty visualization"><img src="assets/reconstruction.webp" alt="The same reconstructed building shown with uncertainty colors and RGB colors, with relative pose covariance matrices for selected frame pairs." width="3600" height="1500" fetchpriority="high"></button>
+        <figcaption><span><i class="legend-dot"></i>Depth &amp; intrinsics uncertainty</span><span>RGB reconstruction + relative pose covariance</span></figcaption>
+      </figure>
+      <div class="hero-facts"><span>VGGT</span><span>VGGT-Ω</span><span>Depth Anything 3</span><span class="fact-note">Frozen geometry. Learned uncertainty.</span></div>
+    </section>
+
+    <section class="section container" id="overview" aria-labelledby="overview-title">
+      <div class="section-label"><span>THE IDEA</span><span class="section-line"></span></div>
+      <div class="intro-layout">
+        <h2 id="overview-title">Strong geometry. <br><span class="accent">Now probabilistic.</span></h2>
+        <div class="intro-copy"><p class="lead">Geometric foundation models recover impressive 3D structure. Downstream estimators also need to know how much to trust it.</p><p>FoundationCov attaches learned covariances to a frozen model’s predictions: dense depth variance, a full 6 × 6 relative pose covariance for any frame pair, and camera intrinsics covariance. The geometric predictions themselves stay unchanged.</p><p>These covariances replace constant noise models and heuristic weights in alignment, mapping, and visual–inertial estimation.</p></div>
+      </div>
+      <div class="stats">
+        <div><span class="stat-value">3</span><p>Geometric backbones <br><span>VGGT · VGGT-Ω · DA3</span></p></div>
+        <div><span class="stat-value">6 × 6</span><p>Full pose covariance <br><span>For any frame pair</span></p></div>
+        <div><span class="stat-value">4</span><p>Downstream datasets <br><span>EuRoC · Aria · ScaRF · Spires</span></p></div>
+        <div><span class="stat-value">45<span class="stat-unit">%</span></span><p>Average trajectory error reduction <br><span>Reported in the paper across four datasets</span></p></div>
+      </div>
+      <details class="abstract"><summary>Read the abstract <span aria-hidden="true">+</span></summary><p>Feed-forward geometric foundation models demonstrate remarkable capabilities in recovering 3D scene geometry and camera poses from a sequence of images. However, despite their impressive accuracy, these models typically provide deterministic predictions with limited characterization of their uncertainty, making it difficult to reliably incorporate their outputs into downstream geometric estimation and sensor fusion pipelines. In this work, we introduce FoundationCov, a general covariance prediction framework for feed-forward geometric foundation models that jointly estimates dense pixelwise depth uncertainty, full 6-DoF relative pose covariance, and camera intrinsics covariance. Extensive experiments demonstrate that FoundationCov produces covariances that reflect the observed errors on unseen datasets without test-time calibration and improves downstream performance in uncertainty-aware multi-view reconstruction and visual-inertial estimation. Our work takes a step toward transforming feed-forward geometric foundation models from standalone reconstruction systems into probabilistic measurement providers for downstream 3D perception and estimation. Our code and model checkpoints will be publicly available.</p><figure class="paper-figure"><button class="figure-button" data-zoom="assets/overview.webp" data-caption="FoundationCov overview: covariance-aware alignment, pose graph optimization, sensor fusion, and SLAM, with uncertainty-aware reconstruction." aria-label="Enlarge FoundationCov overview"><img src="assets/overview.webp" alt="FoundationCov overview connecting predicted covariances to alignment, optimization, sensor fusion, and SLAM." width="1488" height="540" loading="lazy"></button></figure></details>
+    </section>
+
+    <section class="section section-tinted" id="uncertainty" aria-labelledby="uncertainty-title"><div class="container">
+      <div class="section-label"><span>EXPLORE THE UNCERTAINTY</span><span class="section-line"></span></div>
+      <div class="section-heading"><h2 id="uncertainty-title">What does the model know <br>about its own errors?</h2><p>Predicted covariances on unseen data. <br>Examples from VGGT-Ω.</p></div>
+      <div class="tablist uncertainty-tabs" role="tablist" aria-label="Uncertainty type">
+        <button id="tab-depth" role="tab" aria-selected="true" aria-controls="panel-depth" tabindex="0"><span>Depth</span><small>Every pixel</small></button>
+        <button id="tab-pose" role="tab" aria-selected="false" aria-controls="panel-pose" tabindex="-1"><span>Relative pose</span><small>Any frame pair</small></button>
+        <button id="tab-intrinsics" role="tab" aria-selected="false" aria-controls="panel-intrinsics" tabindex="-1"><span>Intrinsics</span><small>Every frame</small></button>
+      </div>
+      <div class="uncertainty-panel" id="panel-depth" role="tabpanel" aria-labelledby="tab-depth" tabindex="0">
+        <div class="uncertainty-copy"><p class="eyebrow">DENSE DEPTH VARIANCE</p><h3>See where depth <br>is less certain.</h3><p>Predicted standard deviations reflect the spatial pattern of local RMS log-depth errors on unseen ETH3D scenes.</p><p class="panel-note">Gray regions indicate missing ground truth. These are measured errors and model predictions from the paper.</p></div>
+        <figure class="uncertainty-figure"><button class="figure-button" data-zoom="assets/depth.webp" data-caption="Depth on ETH3D: input image, local RMS log-depth error, and predicted standard deviation." aria-label="Enlarge depth uncertainty example"><img src="assets/depth.webp" alt="Input image, local RMS depth error, and predicted standard deviation on a building scene." width="717" height="171" loading="lazy"></button><figcaption>Image · Local RMS error · Predicted standard deviation</figcaption></figure>
+      </div>
+      <div class="uncertainty-panel" id="panel-pose" role="tabpanel" aria-labelledby="tab-pose" tabindex="0" hidden>
+        <div class="uncertainty-copy"><p class="eyebrow">FULL 6-DOF COVARIANCE</p><h3>Uncertainty has <br>a direction.</h3><p>A full 6 × 6 covariance describes the magnitude and directional structure of relative pose errors, including correlations.</p><p class="panel-note">TUM RGB-D example. The ellipses show predicted 2σ position uncertainty relative to the first frame.</p></div>
+        <figure class="uncertainty-figure pose-figure"><button class="figure-button" data-zoom="assets/pose.webp" data-caption="TUM RGB-D: ground-truth and predicted camera centers, with predicted 2σ position ellipses relative to the first frame." aria-label="Enlarge relative pose uncertainty example"><img src="assets/pose.webp" alt="Camera trajectory with ground-truth and predicted positions and blue covariance ellipses." width="381" height="369" loading="lazy"></button><figcaption>Ground truth · Prediction · 2σ position ellipses</figcaption></figure>
+      </div>
+      <div class="uncertainty-panel" id="panel-intrinsics" role="tabpanel" aria-labelledby="tab-intrinsics" tabindex="0" hidden>
+        <div class="uncertainty-copy"><p class="eyebrow">FOCAL-LENGTH COVARIANCE</p><h3>Camera calibration, <br>with uncertainty.</h3><p>A full 2 × 2 covariance models uncertainty in the predicted log focal lengths. Its effects can be propagated into 3D geometry.</p><p class="panel-note">TUM RGB-D example. Ray-angle errors induced by focal-length estimation are compared with predicted standard deviations.</p></div>
+        <figure class="uncertainty-figure"><button class="figure-button" data-zoom="assets/intrinsics.webp" data-caption="Intrinsics on TUM RGB-D: input image, ray-angle error from focal-length estimation, and predicted standard deviation." aria-label="Enlarge intrinsics uncertainty example"><img src="assets/intrinsics.webp" alt="Input image and heatmaps comparing focal-length-induced ray-angle error with predicted standard deviation." width="717" height="192" loading="lazy"></button><figcaption>Image · Ray-angle error · Predicted standard deviation</figcaption></figure>
+      </div>
+    </div></section>
+
+    <section class="section container" id="method" aria-labelledby="method-title">
+      <div class="section-label"><span>THE METHOD</span><span class="section-line"></span></div>
+      <div class="section-heading"><h2 id="method-title">Keep the geometry. <br><span class="accent">Learn the covariance.</span></h2><p>One head architecture, applied separately <br>to three pretrained geometric backbones.</p></div>
+      <figure class="paper-figure"><button class="figure-button" data-zoom="assets/architecture.webp" data-caption="FoundationCov architecture. Frozen camera features condition pose and focal covariance heads; a trainable DPT decodes patch features for pixelwise depth variance." aria-label="Enlarge diagram: FoundationCov architecture"><img src="assets/architecture.webp" alt="Frozen geometric model feeding pose, depth, and focal-length covariance heads while its mean predictions remain unchanged." width="1428" height="645" loading="lazy"><span class="zoom-label">Enlarge diagram</span></button></figure>
+      <div class="method-grid">
+        <article><div class="method-symbol" aria-hidden="true">ϕ</div><h3>Freeze the foundation model</h3><p>Reuse camera and dense features from VGGT, VGGT-Ω, or Depth Anything 3. Preserve the original camera and depth predictions.</p></article>
+        <article><div class="method-symbol" aria-hidden="true">Σ</div><h3>Predict structured uncertainty</h3><p>Learn relative pose and focal-length covariances from camera features, and dense depth variance with a separate trainable DPT branch.</p></article>
+        <article><div class="method-symbol" aria-hidden="true">Σ⁻¹</div><h3>Weight downstream estimation</h3><p>Propagate the covariances into residuals and use their inverse to weight geometric constraints in existing estimators.</p></article>
+      </div>
+      <div class="integration-strip"><span>Sim(3) alignment</span><span>Loop closure</span><span>Visual–inertial initialization</span><span>Visual &amp; visual–inertial SLAM</span></div>
+    </section>
+
+    <section class="section section-tinted" id="mapping" aria-labelledby="mapping-title"><div class="container">
+      <div class="section-label"><span>DOWNSTREAM RECONSTRUCTION</span><span class="section-line"></span></div>
+      <div class="section-heading"><h2 id="mapping-title">Better weighting. <br>More consistent maps.</h2><p>Compare VGGT-Bridge with its default weights <br>and with FoundationCov.</p></div>
+      <div class="comparison-layout">
+        <div class="comparison-copy"><p class="eyebrow">OXFORD SPIRES · VGGT-Ω</p><h3>Same scene. <br>Same viewpoint.</h3><p>Replacing heuristic weights with propagated covariances reduces structural distortions in the reconstructed map.</p><p>Move the slider to compare the two reconstructions.</p><div class="compare-key"><span><i class="key-baseline"></i>Default weighting</span><span><i class="key-ours"></i>+ FoundationCov</span></div></div>
+        <div class="compare-wrap"><div class="image-comparison" style="--split:50%"><img class="comparison-base" src="assets/baseline-map.webp" alt="VGGT-Bridge reconstruction with default weighting on Spires CC02." width="997" height="788" loading="lazy"><div class="comparison-reveal"><img src="assets/ours-map.webp" alt="The same viewpoint after applying FoundationCov covariance weighting." width="997" height="788" loading="lazy"></div><div class="comparison-line" aria-hidden="true"><span>Ⅱ</span></div><span class="compare-label label-left">+ FoundationCov</span><span class="compare-label label-right">Default</span></div><label class="slider-label" for="map-slider">Comparison position <output id="map-position" for="map-slider">50%</output></label><input id="map-slider" type="range" min="0" max="100" value="50" aria-label="Reveal FoundationCov reconstruction" aria-valuetext="50 percent FoundationCov visible"></div>
+      </div>
+      <details class="additional-figure"><summary>View the localization and mapping examples <span aria-hidden="true">+</span></summary><div class="additional-grid"><figure><button class="figure-button" data-zoom="assets/localization.webp" data-caption="Localization examples from EuRoC, Aria, and ScaRF. Blue: FoundationCov; orange: default weighting; dashed green: ground truth." aria-label="Enlarge localization examples"><img src="assets/localization.webp" alt="Six localization examples comparing ground truth, baseline trajectories, and FoundationCov trajectories." loading="lazy" width="573" height="582"></button><figcaption>Localization across EuRoC, Aria, and ScaRF</figcaption></figure><figure><button class="figure-button" data-zoom="assets/mapping.webp" data-caption="VGGT-Bridge maps with default weights and FoundationCov, rendered from matching viewpoints." aria-label="Enlarge mapping examples"><img src="assets/mapping.webp" alt="Two mapping examples showing baseline and FoundationCov reconstructions side by side." loading="lazy" width="606" height="582"></button><figcaption>Mapping on Spires and ScaRF</figcaption></figure></div></details>
+    </div></section>
+
+    <section class="section container" id="results" aria-labelledby="results-title">
+      <div class="section-label"><span>QUANTITATIVE RESULTS</span><span class="section-line"></span></div>
+      <div class="section-heading"><h2 id="results-title">Covariances that improve <br>complete systems.</h2><p>Trajectory error with default weighting <br>versus FoundationCov. Lower is better.</p></div>
+      <div class="results-controls">
+        <fieldset><legend>System</legend><div class="segmented"><label><input type="radio" name="system" value="bridge" checked><span>VGGT-Bridge</span></label><label><input type="radio" name="system" value="vio"><span>FoundationVIO</span></label></div></fieldset>
+        <fieldset><legend>Backbone</legend><div class="segmented"><label><input type="radio" name="backbone" value="omega" checked><span>VGGT-Ω</span></label><label><input type="radio" name="backbone" value="vggt"><span>VGGT</span></label><label><input type="radio" name="backbone" value="da3"><span>DA3</span></label></div></fieldset>
+        <fieldset><legend>Loop closure</legend><div class="segmented"><label><input type="radio" name="loop" value="with" checked><span>With</span></label><label><input type="radio" name="loop" value="without"><span>Without</span></label></div></fieldset>
+      </div>
+      <div class="results-chart"><div class="chart-heading"><h3 id="chart-title">VGGT-Bridge · VGGT-Ω · With loop closure</h3><span id="chart-metric">Sim(3) ATE RMSE (m)</span></div><div class="chart-legend"><span><i class="key-baseline"></i>Default weighting</span><span><i class="key-ours"></i>+ FoundationCov</span></div><div id="result-bars" aria-live="polite" aria-atomic="true"></div><p class="chart-footnote">Dataset means from the paper’s complete-system evaluation. Bars share a common scale within each selection; percentages compare FoundationCov with the default weighting.</p></div>
+      <details class="exact-results"><summary>View exact values for this selection <span aria-hidden="true">+</span></summary><div class="table-scroll"><table><caption id="table-caption">Complete-system trajectory error (m)</caption><thead><tr><th scope="col">Dataset</th><th scope="col">Default</th><th scope="col">FoundationCov</th><th scope="col">Reduction</th></tr></thead><tbody id="result-table"></tbody></table></div></details>
+      <noscript><p class="noscript-note">Enable JavaScript to explore the result filters. The complete numerical results are available in the <a href="assets/foundationcov-paper.pdf">paper</a>.</p></noscript>
+      <div class="result-context"><h3>Beyond one estimator</h3><p>The paper also evaluates isolated Sim(3) alignment, loop closure, visual–inertial initialization, and zero-shot uncertainty calibration. Full protocols, ablations, failure cases, and limitations are included in the manuscript.</p><a href="assets/foundationcov-paper.pdf" class="text-link" target="_blank" rel="noopener">Read the full evaluation</a></div>
+    </section>
+
+    <section class="section section-tinted paper-section" id="paper" aria-labelledby="paper-title"><div class="container paper-layout"><div><p class="eyebrow">PAPER &amp; RESOURCES</p><h2 id="paper-title">Geometry you can <br><span class="accent">reason with.</span></h2><p>FoundationCov: Making Geometric Foundation Models <br>Probabilistic with Predictive Covariances</p><p class="paper-authors">Anonymous Authors</p><a class="button button-primary" href="assets/foundationcov-paper.pdf" target="_blank" rel="noopener">Read the anonymous paper</a></div><div class="resource-note"><span class="resource-mark" aria-hidden="true">Σ</span><h3>Code &amp; model checkpoints</h3><p>Code and model checkpoints will be publicly available. This review version presents the anonymous manuscript and its experimental results.</p><span class="resource-status">Release forthcoming</span></div></div></section>
+  </main>
+  <footer class="container"><a class="wordmark" href="#top">Foundation<span>Cov.</span></a><p>Anonymous research project</p><a href="#top">Back to top</a></footer>
+  <dialog id="figure-dialog" aria-labelledby="dialog-caption"><div class="dialog-toolbar"><p id="dialog-caption"></p><button id="close-dialog" class="icon-button" type="button" aria-label="Close enlarged figure">×</button></div><img id="dialog-image" alt="Enlarged research figure"></dialog>
+</body>
+</html>
